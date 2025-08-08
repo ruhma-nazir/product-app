@@ -18,21 +18,26 @@ A Django application for managing products, including adding, editing, deleting,
    cd product-app
 
 2. **Create and Activate a virtual environment**
-python -m venv venv
-source venv/bin/activate 
+   ```bash
+   python -m venv venv
+   source venv/bin/activate 
 
 3. **Install Dependencies**
-pip install -r requirements.txt 
+   ```bash
+   pip install -r requirements.txt 
 
 
 4. **Apply Migration**
-python manage.py migrate 
+   ```bash
+   python manage.py migrate 
 
 5. **Run the server**
-python manage.py runserver 
+   ```bash
+   python manage.py runserver 
 
 6. **Access the app**
-Open your browser and go to http://127.0.0.1:8000/ to see the product app in action.
+   ```bash
+   Open your browser and go to http://127.0.0.1:8000/ to see the product app in action.
 
 
 
