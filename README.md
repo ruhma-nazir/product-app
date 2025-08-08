@@ -13,7 +13,7 @@ A Django application for managing products, including adding, editing, deleting,
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/product-app.git
+   git clone https://github.com/ruhma-nazir/product-app.git
    cd product-app
 
 2. **Create and Activate a virtual environment**
