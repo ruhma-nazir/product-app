@@ -4,11 +4,10 @@ A Django application for managing products, including adding, editing, deleting,
 
 ## Features
 
-- Add new products with details like name, description, price, and category.
+- Add new products with details like name, description, price, and availability.
 - Edit and update existing product information.
 - Delete products from the database.
-- View a list of all products.
-- Search and filter products by different criteria (if applicable).
+- View the details of products.
 
 ## Installation
 
