@@ -1,0 +1,35 @@
+{% include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <h1>All Product Details</h1>
+     <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products  %}
+            <tr>  
+            <td><a href="{% url 'displayproduct' product.id %}">{{product.id}}</a></td>
+            <td>{{product.name}}</td>
+            <td>
+            <a href="{% url 'createproduct' %}" class="btn">Create product</a>
+            <a href="{% url 'deleteproduct' %}" class="btn">Delete Product</a>
+            <a href="{% url 'updateproduct' %}" class="btn">Update product</a>
+            </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+     </table>
+</body>
+</html>
+

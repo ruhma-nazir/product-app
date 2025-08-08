@@ -1,0 +1,23 @@
+{% include "navbar.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <title>Home Page</title>
+</head>
+<body>
+     <h1 id ="heading">Product Management App</h1>
+     <p>This app helps you manage your products efficiently. You can:  </p>
+        <ul>
+         <li><strong>Create new products</strong> with details like name, description, and price.</li>
+         <li><strong>View all products</strong> to see what you have in your catalog.</li>
+         <li><strong>Update existing products</strong> whenever you need to change details.</li>
+         <li><strong>Delete products</strong> that are no longer available or needed.</li>
+        </ul>
+   
+</body>
+</html>

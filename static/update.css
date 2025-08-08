@@ -1,0 +1,54 @@
+#heading{
+    margin-left: 8rem;
+    font-size: 40px;
+    color: rgb(66, 66, 66);
+    margin-top: 5px;
+    padding-top: 1rem;
+}
+
+#product{
+    margin-left: 8rem;
+    font-size: 20px;
+    color: rgb(66, 66, 66);
+}
+#name{
+    font-size: 20px;
+    padding: 5px;
+    margin: 15px 0px 15px 8rem;
+}
+
+#lable{
+    margin-left: 8rem;
+    font-size: 20px;
+}
+
+#description{
+    font-size: 20px;
+    padding: 20px;
+    margin: 15px 0px 15px 8rem;
+}
+#price{
+    font-size: 20px;
+    padding: 5px;
+    margin: 15px 0px 15px 8rem;
+}
+
+#in_stock{
+    font-size: 20px;
+    padding: 5px;
+    margin: 15px 0px 15px 8rem;
+}
+
+#btn{
+    font-size: 20px;
+    padding: 5px;
+    margin: 15px 0px 15px 8rem;
+}
+
+.img {
+    background-image: url("simple.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}

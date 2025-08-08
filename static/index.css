@@ -1,0 +1,25 @@
+.hidden{
+    display: none;
+}
+.btn{
+    padding: 1rem;
+}
+#heading{
+    font-size: 32px;
+    margin-top: 30px;
+    margin-left: 15rem;
+    color: #333;
+
+}
+.btnn{
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    flex-wrap: nowrap; 
+    margin-left: 15rem;
+    color: #333;
+}
+#deletebtn{
+    margin-top: 2rem;
+    padding: 10px;
+}

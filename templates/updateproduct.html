@@ -1,0 +1,58 @@
+{% include 'navbar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'update.css' %}">
+    <title>Update product</title>
+</head>
+<body>
+    <div class ="img">
+     <form action="{% url 'updateproduct' %}" method="POST">
+         <h1 id = "heading">Update the Product</h1>
+         {% csrf_token %}
+          <label id = "product" for="product"> Select the product</label>
+          <select name="productid" id="product">
+            {%for product in products%}
+            <option value="{{product.id}}">{{product.name}}</option>
+            {%endfor%}
+          </select>
+          <h1 id = "heading">Add updated details</h1> 
+          <label id="lable"for="name">Name </label><br>
+          <input id="name" type="text" name="name"  required><br>
+          <label id="lable" for="description">Description</label><br>
+          <textarea id ="description" type="text" name= "description" rows="6" cols="30" required ></textarea><br>
+          <label id="lable" for="price" >Price</label><br>
+          <input id ="price" type="number" name="price" required><br>
+          <input type="hidden" name ="in_stock" value="False">
+          <label id="lable" for="in_stock">InStock</label><br>
+          <input id ="in_stock" type = "checkbox" name = "in_stock" value="True"><br>
+          <button id ="btn" type="submit">Update Product</button>
+     </form>
+    </div>
+    <script>
+    const products_data = {{json_products|safe}}
+    console.log(products_data);
+    document.getElementById('product').addEventListener('change',function(){
+        const selected_id = parseInt(this.value)
+        const selected_product = products_data.find(p=> p.id == selected_id)
+        if(selected_product){
+            document.getElementById('name').value = selected_product.name;
+            document.getElementById('description').value = selected_product.description;
+            document.getElementById('price').value = selected_product.price;
+            document.getElementById('in_stock').checked = selected_product.in_stock;
+        }
+        else{
+            document.getElementById('name').value= "";
+            document.getElementById('description').value = "";
+            document.getElementById('price').value = "";
+            document.getElementById('in_stock').checked = false;
+        }
+    });
+    document.getElementById('product').dispatchEvent(new Event('change'));
+</script>
+</body>
+</html>
+

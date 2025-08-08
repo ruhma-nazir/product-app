@@ -1,0 +1,34 @@
+{% include 'navbar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <title>display product</title>
+</head>
+<body>
+     <h1>Product Details</h1>
+     {%if product%}
+     <div>
+        <ul>
+            <li>{{product.name}}</li>
+            <li>{{product.price}}</li>
+            <div > 
+                Details: <br>
+                id: {{product.id}}<br>
+                Description : {{product.description}}<br>
+                Instock : {{product.instock|yesno:"Yes,No"}}<br>
+                Creation Date: {{product.created_at}}<br>
+                Date of updation :{{product.updated_at}}<br>
+            </div>  
+        </ul>
+     </div>
+     {%else%}
+     <div>
+        <p>NO products found</p>
+     </div>
+     {% endif %}
+</body>
+</html>
