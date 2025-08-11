@@ -10,17 +10,15 @@
        
        <form action="{% url 'createproduct' %}" method = "POST">
         {% csrf_token %}
-         {% if error %}
-        <p style="color:red;">{{ error }}</p>
-        {% endif %}
-
+        {{form}}
+        {% comment %} 
         <h1>Add Product</h1> 
         <label for="name">Name </label><br>
         <input id="name" type="text" name ="name" required><br>
         <label for="description">Description</label><br>
         <textarea id ="description" type="text" name= "description" rows="6" cols="30" required ></textarea><br>
         <label for="price" >Price</label><br>
-        <input id ="price" type="number" name="price" ><br>
+        <input id ="price" type="number" name="price" ><br> {% endcomment %}
         <button type="submit">Add Product</button>
     </form>
 </body>
