@@ -24,7 +24,7 @@
             <td>
             <a href="{% url 'createproduct' %}" class="btn">Create product</a>
             <a href="{% url 'deleteproduct' %}" class="btn">Delete Product</a>
-            <a href="{% url 'updateproduct' %}" class="btn">Update product</a>
+            <a href="{% url 'updateproduct' product.id %}" class="btn">Update product</a>
             </td>
             </tr>
             {% endfor %}

@@ -1,34 +1,27 @@
 import json
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from product.models import Product
-
+from .forms import *
 # Create your views here.
 
 
 def createproduct(request):
     if request.method == "POST":
-        name = request.POST["name"]
-        description = request.POST["description"]
-        price = float(request.POST["price"])
-        try:
-            price = float(price)
-            if price < 0:
-                raise ValueError("Price must be positive")
-        except ValueError as e:
-            return render(
-                request,
-                "createproduct.html",
-                {
-                    "error": str(e),
-                    "name": name,
-                },
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            description = form.cleaned_data["description"]
+            price = float(form.cleaned_data["price"])
+            in_stock = form.cleaned_data["in_stock"]
+            obj = Product(
+                name=name, description=description, price=price, in_stock=in_stock
             )
-        obj = Product(name=name, description=description, price=price)
-        obj.save()
-        return HttpResponse("<h1>Product has been created Succesfully")
+            obj.save()
+            return HttpResponse("<h1>Product has been created Succesfully")
     elif request.method == "GET":
-        return render(request, "createproduct.html")
+        form = ContactForm()
+        return render(request, "createproduct.html", {"form": form})
 
 
 def deleteproduct(request):
@@ -48,35 +41,36 @@ def displayproduct(request, id):
         return render(request, "displayproduct.html", {"product": product})
 
 
-def updateproduct(request):
+
+def updateproduct(request,p_id):
+    # product = Product.objects.get(id=p_id)
+    product = get_object_or_404(Product, {id: p_id})
     if request.method == "POST":
-        productid = request.POST.get("productid")
-        product = Product.objects.get(id=productid)
-        product.name = request.POST["name"]
-        product.description = request.POST["description"]
-        price = float(request.POST["price"])
-        if price < 0:
-            return render(
-                request,
-                "createproduct.html",
-                {"error": "price must be a positive number"},
-            )
-        product.price = price
-        product.in_stock = request.POST.get("in_stock")
-        product.save()
-        return HttpResponse("<h1>Product has been updated successfully.</h1>")
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            product.name = form.cleaned_data["name"]
+            product.description = form.cleaned_data["description"]
+            product.price = float(form.cleaned_data["price"])
+            product.in_stock = form.cleaned_data["in_stock"]
+            product.save()
+            return HttpResponse("<h1>Product has been updated successfully.</h1>")
+    
     elif request.method == "GET":
-        product = Product.objects.all()
-        products_data = list(
-            product.values("id", "name", "description", "price", "in_stock")
-        )
+        form = ContactForm(initial={
+            'name': product.name,
+            'description': product.description,
+            'price': product.price,
+            'in_stock': product.in_stock,
+        })
         return render(
             request,
             "updateproduct.html",
-            {"products": product, "json_products": json.dumps(products_data)},
+            {
+                "product": product,
+                "form": form,
+            },
         )
-
-
+    
 def home(request):
     return render(request, "home.html")
 

@@ -10,16 +10,23 @@
 </head>
 <body>
     <div class ="img">
-     <form action="{% url 'updateproduct' %}" method="POST">
-         <h1 id = "heading">Update the Product</h1>
+     <form action="{% url 'updateproduct' product.id %}" method="POST">
+         <h1 id = "heading">Update the Product :{{product.name}}</h1>
          {% csrf_token %}
-          <label id="first" for="product"> Select the product</label>
-          <select name="productid" id="product">
+         {{form.as_p}}   
+          <button id ="btn" type="submit">Update Product</button>
+     </form>
+    </div>
+</body>
+</html>
+ {% comment %} <label id="first" for="product"> Select the product</label>
+          <select id="product" name="productid" >
             {%for product in products%}
             <option value="{{product.id}}">{{product.name}}</option>
             {%endfor%}
-          </select>
-          <h1 id = "heading">Add updated details</h1> 
+          </select> {% endcomment %}
+        
+          {% comment %} <h1 id = "heading">Add updated details</h1> 
           <label id="lable"for="name">Name </label><br>
           <input id="name" type="text" name="name" ><br>
           <label id="lable" for="description">Description</label><br>
@@ -28,39 +35,4 @@
           <input id ="price" type="number" name="price" ><br>
           <input type="hidden" name ="in_stock" value="False">
           <label id="lable" for="in_stock">InStock</label><br>
-          <input id ="in_stock" type = "checkbox" name = "in_stock" value="True"><br>
-          <button id ="btn" type="submit">Update Product</button>
-     </form>
-    </div>
- <script>
-    document.addEventListener('DOMContentLoaded',function(){
-    const products_data = {{json_products|safe}};
-    console.log(products_data);
-    document.getElementById('product').addEventListener('change',function(){
-        //const selected_id = parseInt(this.value);
-        //const selected_product = products_data.find(p=> p.id == selected_id);
-        console.log("Dropdown changed. Selected id:", this.value);
-
-        const selected_id = parseInt(this.value);
-        console.log("Parsed selected_id:", selected_id);
-
-        const selected_product = products_data.find(p => p.id == selected_id);
-        console.log("Selected product found:", selected_product);
-        if(selected_product){
-            document.getElementById('name').value = selected_product.name;
-            document.getElementById('description').value = selected_product.description;
-            document.getElementById('price').value = selected_product.price;
-            document.getElementById('in_stock').checked = selected_product.in_stock;
-        }
-        else{
-            document.getElementById('name').value= "";
-            document.getElementById('description').value = "";
-            document.getElementById('price').value = "";
-            document.getElementById('in_stock').checked = false;
-        }
-    });
-     document.getElementById('product').dispatchEvent(new Event('change'));
-    });
-</script>
-</body>
-</html>
+          <input id ="in_stock" type = "checkbox" name = "in_stock" value="True"><br> {% endcomment %}
